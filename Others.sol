@@ -76,3 +76,17 @@ contract ReentrancyGuard {
 }
 
 
+contract ArgumentsChecker {
+
+  modifier payloadSizeIs(uint size) {
+    require(msg.data.length == size + 4 /* function selector */);
+    _;
+  }
+
+  modifier validAddress(address addr) {
+    require(addr != address(0));
+    _;
+  }
+}
+
+
