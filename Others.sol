@@ -82,7 +82,14 @@ contract ArgumentsChecker {
     require(msg.data.length == size + 4 /* function selector */);
     _;
   }
-
+/*
+function transfer(address _to, uint256 _value) onlyPayloadSize(2 * 32) returns (bool) {
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    Transfer(msg.sender, _to, _value);
+    return true;
+  }
+*/
   modifier validAddress(address addr) {
     require(addr != address(0));
     _;
